@@ -1,0 +1,7 @@
+{% macro render(name, value, options = {}) %}
+    <div class="d-flex align-items-center position-relative my-1" >
+        {{ icon('search') }}
+        <input type="text" class="form-control form-control-sm w-150px ps-10" id="kt_amz_search_input"
+               name="{{ name | default('search') }}" placeholder="{{ options.placeholder | default('Search') }}">
+    </div>
+{% endmacro %}

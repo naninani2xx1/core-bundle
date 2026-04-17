@@ -1,0 +1,100 @@
+{# 1. Định nghĩa Macro để tái sử dụng code #}
+{% macro menu_item(label, route, icon_class = 'ki-calendar-8', active_condition = false) %}
+    <div class="menu-item">
+        <a class="menu-link {{ active_condition ? 'active' : '' }}" href="{{ path(route.name, route.params|default({})) }}">
+            {% if icon_class is not empty %}
+                <span class="menu-icon">
+                <i class="ki-duotone {{ icon_class }} fs-2">
+                    <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                    <span class="path4"></span><span class="path5"></span><span class="path6"></span>
+                </i>
+            </span>
+            {% else %}
+                <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                </span>
+            {% endif %}
+            <span class="menu-title">{{ label }}</span>
+        </a>
+    </div>
+{% endmacro %}
+
+{% import _self as local_macros %}
+
+<div id="kt_app_sidebar" class="app-sidebar flex-column">
+    <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
+        <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper">
+            <div id="kt_app_sidebar_menu_scroll" class="scroll-y my-5 mx-3">
+
+                {# Section: Content #}
+                <div class="menu-item pt-5">
+                    <div class="menu-content"><span class="menu-heading fw-bold text-uppercase fs-7">Content</span></div>
+                </div>
+
+                <div class="menu menu-column menu-rounded menu-sub-indention fw-semibold fs-6" id="#kt_app_sidebar_menu" data-kt-menu="true">
+
+                    {# --- Group 1: Page Management --- #}
+{#                    {% set isPageMgmtActive = is_route_active([app_admin_page_index_route, 'app_admin_block_static_index', 'app_admin_block_preview']) %}#}
+{#                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ isPageMgmtActive ? 'hover show' : '' }}">#}
+{#                        <span class="menu-link">#}
+{#                            <span class="menu-icon"></span>#}
+{#                            <span class="menu-title">Page Management</span>#}
+{#                            <span class="menu-arrow"></span>#}
+{#                        </span>#}
+{#                        <div class="menu-sub menu-sub-accordion {{ isPageMgmtActive ? 'show' : '' }}">#}
+{#                            {{ local_macros.menu_item('Pages', {name: app_admin_page_index_route}, '', is_route_active(app_admin_page_index_route)) }}#}
+{#                            {{ local_macros.menu_item('Static Block', {name: 'app_admin_block_static_index'}, '', is_route_active('app_admin_block_static_index')) }}#}
+{#                        </div>#}
+{#                    </div>#}
+
+                    {# --- Group 2: News Article --- #}
+{#                    {% set currentType = app.request.attributes.get('type') %}#}
+{#                    {% set isArticleCatActive = (is_route_active([app_admin_article_index_route, app_admin_article_edit_route]) and currentType == article_type_news) or#}
+{#                        (is_route_active('app_admin_category_index') and currentType == category_type_category_article) %}#}
+
+{#                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ isArticleCatActive ? 'hover show' : '' }}">#}
+{#                        <span class="menu-link">#}
+{#                            <span class="menu-icon">{{ macros.sidebar_dashboard_icon() }}</span>#}
+{#                            <span class="menu-title">News Management</span>#}
+{#                            <span class="menu-arrow"></span>#}
+{#                        </span>#}
+{#                        <div class="menu-sub menu-sub-accordion  {{ isArticleCatActive ? 'show' : '' }}">#}
+{#                            {{ local_macros.menu_item('News', {name: app_admin_article_index_route, params: {type: article_type_news}}, '', currentType == article_type_news) }}#}
+{#                            {{ local_macros.menu_item('Category', {name: 'app_admin_category_index', params: {type: category_type_category_article}}, '', currentType == category_type_category_article) }}#}
+{#                        </div>#}
+{#                    </div>#}
+
+                    {# --- Single Items --- #}
+
+{#                    {{ local_macros.menu_item('Companion tips management', {name: app_admin_article_index_route, params: {type: article_type_companion_tips}}, 'ki-file', currentType == article_type_companion_tips) }}#}
+{#                    {{ local_macros.menu_item('Qas', {name: 'app_admin_qa_index'}, 'ki-chart-pie-3', is_route_active('app_admin_qa_index')) }}#}
+{#                    {{ local_macros.menu_item('Topic', {name: app_admin_topic_index_route}, 'ki-home-2', is_route_active(app_admin_topic_index_route)) }}#}
+{#                    {{ local_macros.menu_item('Ticket', {name: 'app_admin_ticket_request_index'}, 'ki-abstract-25', is_route_active('app_admin_ticket_request_index')) }}#}
+{#                    {{ local_macros.menu_item('Gallery', {name: app_admin_gallery_index_route}, 'ki-picture', is_route_active(app_admin_gallery_index_route)) }}#}
+{#                    {{ local_macros.menu_item('Feeback', {name: app_admin_feedback_index_route}, 'ki-chart', is_route_active(app_admin_feedback_index_route)) }}#}
+
+                    {# Section: Setting #}
+                    <div class="menu-item pt-5">
+                        <div class="menu-content"><span class="menu-heading fw-bold text-uppercase fs-7">Setting</span></div>
+                    </div>
+{#                    {{ local_macros.menu_item('Translation', {name: 'app_admin_translation_index'}, 'ki-element-2', is_route_active('app_admin_translation_index')) }}#}
+{#                    {{ local_macros.menu_item('Media library', {name: 'app_admin_media_library_index_route'}, 'ki-picture', is_route_active(app_admin_media_library_index_route)) }}#}
+{#                    {{ local_macros.menu_item('Menu', {name: 'app_admin_menu_index_route'}, 'ki-menu', is_route_active([app_admin_menu_index_route, app_admin_menu_children_index_route])) }}#}
+                    {{ local_macros.menu_item('Settings', {name: amzs_setting_index_route}, 'ki-setting-2', is_route_active(amzs_setting_index_route)) }}
+
+                    {# Section: User Management #}
+{#                    <div class="menu-item pt-5">#}
+{#                        <div class="menu-content"><span class="menu-heading fw-bold text-uppercase fs-7">User Management</span></div>#}
+{#                    </div>#}
+{#                    {{ local_macros.menu_item('Users', {name: 'app_admin_user_index'}, 'ki-user', is_route_active('app_admin_user_index')) }}#}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 px-6">
+        <a href="#" class="btn btn-primary w-100">
+            <span class="btn-label">Quick logout</span>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CMS system</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="#" />
+    <meta name="keywords" content="#" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="#" />
+    <meta property="og:url" content="#" />
+    <meta property="og:site_name" content="CMS Admin Template by AMZS" />
+    <link rel="canonical" href="http://dashboards/logistics.html" />
+    <link rel="shortcut icon" href="{{ asset(get_path_core_cms_asset() ~ 'assets/media/logos/favicon.ico') }}" />
+    <!--begin::Fonts(mandatory for all pages)-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <title>{% block title %}CMS{% endblock %}</title>
+
+    {# Assets Bundles #}
+
+
+    {# Extra CSS from child bundles #}
+    {% block stylesheets %}
+        <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+        <link href="{{ asset(get_path_core_cms_asset() ~ 'assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset(get_path_core_cms_asset() ~ 'assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.css" rel="stylesheet" type="text/css" />
+{#        <link href="https://cdn.datatables.net/2.3.7/css/dataTables.dataTables.css" rel="stylesheet" type="text/css" />#}
+        <!--end::Global Stylesheets Bundle-->
+    {% endblock %}
+</head>
+<body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+<!--begin::Theme mode setup on page load-->
+<script>var defaultThemeMode = "light"; var themeMode; if ( document.documentElement ) { if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); } else { if ( localStorage.getItem("data-bs-theme") !== null ) { themeMode = localStorage.getItem("data-bs-theme"); } else { themeMode = defaultThemeMode; } } if (themeMode === "system") { themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; } document.documentElement.setAttribute("data-bs-theme", themeMode); }</script>
+<!--end::Theme mode setup on page load-->
+
+<!--begin::App-->
+<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+    <!--begin::Page-->
+    <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
+        {{ include('@AmzsCore/Layout/_header.html.twig') }}
+        <!--begin::Wrapper-->
+        <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+            {{ include('@AmzsCore/Layout/_sidebar.html.twig') }}
+            <!--begin::Main-->
+            <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+                <!--begin::Content wrapper-->
+                <div class="d-flex flex-column flex-column-fluid">
+                    <!--begin::Toolbar-->
+                    {% block toolbar %}
+                        {# Default? Leave empty or give fallback #}
+                    {% endblock %}
+                    <!--end::Toolbar-->
+                    <!--begin::Content-->
+                    <div id="kt_app_content" class="app-content flex-column-fluid">
+                        <!--begin::Content container-->
+                        <div id="kt_app_content_container" class="app-container container-xxl">
+                            {% block body %}
+
+                            {% endblock %}
+                        </div>
+                        <!--end::Content container-->
+                    </div>
+                    <!--end::Content-->
+                </div>
+                <!--end::Content wrapper-->
+                {{ include('@AmzsCore/Layout/_footer.html.twig') }}
+            </div>
+            <!--end:::Main-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::App-->
+<!--begin::Scrolltop-->
+<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+    <i class="ki-duotone ki-arrow-up">
+        <span class="path1"></span>
+        <span class="path2"></span>
+    </i>
+</div>
+<!--end::Scrolltop-->
+
+{# Extra JS from child bundles #}
+{% block javascripts %}
+    <!--begin::Global Javascript Bundle(mandatory for all pages)-->
+    <script src="{{ asset(get_path_core_cms_asset() ~ 'assets/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset(get_path_core_cms_asset() ~ 'assets/js/scripts.bundle.js') }}"></script>
+    <script src="{{ asset(get_path_core_cms_asset() ~ 'assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+    <script src="{{ asset(get_path_core_cms_asset() ~ 'assets/js/amzs-modal-form.js') }}"></script>
+    <script src="{{ asset(get_path_core_cms_asset() ~ 'assets/js/amzs-datatable.js') }}"></script>
+    <!--end::Global Javascript Bundle-->
+{% endblock %}
+
+</body>
+</html>

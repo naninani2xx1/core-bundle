@@ -1,0 +1,40 @@
+{% import '@AmzsCore/Macros/Form/search.html.twig' as search %}
+{#<div class="card card-p-0 card-flush">#}
+{#    <div class="card-header align-items-center p-5 gap-2 gap-md-5">#}
+{#        <div class="card-title">#}
+{#            <!--begin::Search-->#}
+{#            {{ (search.render()) }}#}
+{#            <!--end::Search-->#}
+{#            <!--begin::Export buttons-->#}
+{#            <div id="kt_datatable_example_1_export" class="d-none"></div>#}
+{#            <!--end::Export buttons-->#}
+{#        </div>#}
+{#        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">#}
+{#            <div class="d-flex flex-stack flex-wrap gap-4">#}
+{#                #}{# ========== BẬT/TẮT FILTER NGÔN NGỮ ========== #}
+{#                {% if show_language_filter is not defined or show_language_filter == true %}#}
+{#                    {{ render_button_filter_language(locale | default('vi')) }}#}
+{#                {% endif %}#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="card-body px-5">#}
+{#        <table id="{{ id | default('kt_datatable') }}" class="ui celled table gy-5 gs-7">#}
+{#            <thead>#}
+{#            <tr class="fw-semibold fs-6 text-gray-800">#}
+{#                {% block thead %}{% endblock %}#}
+{#            </tr>#}
+{#            </thead>#}
+{#            <tbody class="fs-7 text-gray-700"></tbody>#}
+{#        </table>#}
+{#    </div>#}
+{#</div>#}
+{{ (search.render()) }}
+<table id="{{ id | default('kt_datatable') }}" class="ui celled display table gy-5 gs-7">
+    <thead>
+    <tr class="fw-semibold fs-6 text-gray-800">
+        {% block thead %}{% endblock %}
+    </tr>
+    </thead>
+    <tbody class="fs-7 text-gray-700"></tbody>
+</table>
